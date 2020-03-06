@@ -10,6 +10,12 @@
   sudo apt install -y openconnect opensc opensc-pkcs11 gnutls-bin gconf2
 ```
 
+### Configure modules
+
+```
+sudo sh -c "echo 'module:/usr/lib/x86_64-linux-gnu/pkcs11/opensc-pkcs11.so' > /usr/share/p11-kit/modules/opensc.module"
+```
+
 ### Cisco VPN Wrapper
 
 To be able to use OpenConnect for the Cisco VPN server, you have to install this wrapper.
@@ -36,12 +42,6 @@ CSD_HOSTNAME=vpnserver.com
 Run the file
 ```
 ./csd-wrapper.sh  
-```
-
-## Configure SSL
-
-```
-sudo sh -c "echo 'module:/usr/lib/x86_64-linux-gnu/pkcs11/opensc-pkcs11.so' > /usr/share/p11-kit/modules/opensc.module"
 ```
 
 ## Find right tokens
