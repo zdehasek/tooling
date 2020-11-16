@@ -1,4 +1,27 @@
-# How to connect to the cisco VPN with OpenConnect on Linux
+
+## PROID
+
+https://www.proid.cz/ke-stazeni/
+
+sudo dpkg -i libproidplus-gui_2.2.2-0_amd64.deb 
+
+apt-get install gtk2-engines-murrine # je tohle vubec potreba?
+
+apt-get install libjpeg62
+
+apt-get install deb http://security.ubuntu.com/ubuntu xenial-security main 
+
+apt-cache search libpng12-0
+apt-get install libpng12-0 libjpeg62
+apt --fix-broken install
+sudo apt --fix-broken install
+sudo dpkg -i libproidplus-gui_2.2.2-0_amd64.deb 
+
+apt-get install pcscd openconnect opensc opensc-pkcs11 gnutls-bin
+
+
+
+# How to connect to the cisco VPN with OpenConnect on Linux with a Smart Card PKCS#11
 
 *Tested on: Ubuntu 19.10*
 
@@ -82,7 +105,34 @@ To the quotation marks put URL from the token you found.
 ```
 p11tool --list-all-certs 'pkcs11:...'
 ```
+## Add CA to trusted certs
 
+Copy your CA to dir
+```/usr/local/share/ca-certificates/```
+
+Use command: 
+
+```
+sudo cp foo.crt /usr/local/share/ca-certificates/foo.crt
+```
+
+Update the CA store:
+
+```
+sudo update-ca-certificates
+```
+
+TODO: Tohle mi jeste nefunguje
+
+https://fabianlee.org/2019/01/28/git-client-error-server-certificate-verification-failed/
+https://bbs.archlinux.org/viewtopic.php?id=251096
+https://stackoverflow.com/questions/21181231/server-certificate-verification-failed-cafile-etc-ssl-certs-ca-certificates-c
+
+
+Workaround:
+```
+git config --global http.sslverify false
+```
 
 ## Connect to the smartcard
 
